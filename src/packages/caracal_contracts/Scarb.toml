@@ -1,0 +1,13 @@
+[package]
+name = "caracal_contracts"
+version = "0.1.0"
+edition = "2023_01"
+
+[[target.starknet-contract]]
+sierra = true
+
+[cairo]
+sierra-replace-ids = true
+
+[dependencies]
+starknet = ">=2.6.4"
