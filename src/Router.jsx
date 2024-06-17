@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Audits from "./pages/Audits";
 import Documentation from "./pages/Documentation";
+import GasTank from "./pages/GasTank";
 
 export default function Router() {
   const [wallet, setWallet] = useState(null);
@@ -66,6 +67,15 @@ export default function Router() {
         <>
           <Navbar />
           <Documentation />
+        </>
+      ),
+    },
+    {
+      path: "/gas-tank",
+      element: (
+        <>
+          <Navbar />
+          <GasTank />
         </>
       ),
     },
