@@ -16,19 +16,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({wallet, connectWallet, setWallet}) {
+export default function Navbar({ wallet, connectWallet, setWallet }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
+    <header className="bg-gray-50 border">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 py-4 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
             <img className="h-8 w-auto" src={Logo} alt="" />
+            <span className="text-md font-semibold">Sunya</span>
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -43,24 +43,24 @@ export default function Navbar({wallet, connectWallet, setWallet}) {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+            Audits
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+            Documentation
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+            ⛽ Gas Tank
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {wallet && wallet.isConnected ? (
-            <L2WalletConnectKit wallet={wallet} setWallet={setWallet}/>
+            <L2WalletConnectKit wallet={wallet} setWallet={setWallet} />
           ) : (
             <button
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-white p-1 px-2 rounded-md bg-black"
               onClick={() => connectWallet()}
             >
-              Log in <span aria-hidden="true">&rarr;</span>
+              Sign In
             </button>
           )}
         </div>
@@ -89,61 +89,36 @@ export default function Navbar({wallet, connectWallet, setWallet}) {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  {({ open }) => (
-                    <>
-                      <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? "rotate-180" : "",
-                            "h-5 w-5 flex-none"
-                          )}
-                          aria-hidden="true"
-                        />
-                      </DisclosureButton>
-                      <DisclosurePanel className="mt-2 space-y-2">
-                        {/* Replace with your actual data or mock data */}
-                        {["Item 1", "Item 2", "Item 3"].map((item) => (
-                          <DisclosureButton
-                            key={item}
-                            as="a"
-                            href="#"
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            {item}
-                          </DisclosureButton>
-                        ))}
-                      </DisclosurePanel>
-                    </>
-                  )}
-                </Disclosure>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  Audits
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                  Documentation
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  ⛽ Gas Tank
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                {wallet && wallet.isConnected ? (
+                  <L2WalletConnectKit wallet={wallet} setWallet={setWallet} />
+                ) : (
+                  <button
+                    className="text-sm font-semibold leading-6 text-white p-1 px-2 rounded-md bg-black"
+                    onClick={() => connectWallet()}
+                  >
+                    Sign In
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -7,6 +7,10 @@ import Navbar from "./components/Navbar";
 import { connect } from "starknetkit";
 import { useEffect, useState } from "react";
 
+import Home from "./pages/Home";
+import Audits from "./pages/Audits";
+import Documentation from "./pages/Documentation";
+
 export default function Router() {
   const [wallet, setWallet] = useState(null);
 
@@ -38,14 +42,32 @@ export default function Router() {
       path: "/",
       element: (
         <>
-          <Navbar wallet={wallet} connectWallet={connectWallet} setWallet={setWallet} />
-          This is Home
+          <Navbar
+            wallet={wallet}
+            connectWallet={connectWallet}
+            setWallet={setWallet}
+          />
+          <Home />
         </>
       ),
     },
     {
-      path: "/dashboard",
-      element: <>Dashboard</>,
+      path: "/audits",
+      element: (
+        <>
+          <Navbar />
+          <Audits />
+        </>
+      ),
+    },
+    {
+      path: "/documentation",
+      element: (
+        <>
+          <Navbar />
+          <Documentation />
+        </>
+      ),
     },
     {
       path: "*",

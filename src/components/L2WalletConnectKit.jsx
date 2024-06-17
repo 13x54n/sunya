@@ -25,11 +25,14 @@ export default function L2WalletConnectKit({ wallet, setWallet }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          {wallet &&
-            wallet.selectedAddress.substring(0, 6) +
-              "..." +
-              wallet.selectedAddress.slice(-3)}
+        <MenuButton className="inline-flex w-full items-center justify-center gap-1 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <p>👛</p>
+          <p>
+            {wallet &&
+              wallet.selectedAddress.substring(0, 6) +
+                "..." +
+                wallet.selectedAddress.slice(-3)}
+          </p>
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
             aria-hidden="true"

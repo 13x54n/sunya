@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.font_tiny5 {
+  font-family: "Tiny5", sans-serif;
+}
+
+.font_bebas {
+  font-family: "Bebas Neue", sans-serif;
+}
