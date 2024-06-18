@@ -9,7 +9,7 @@ const app = express();
 app.get("/api/analyze", (req, res) => {
   const bashScriptPath = "./scripts/Detector.sh";
 
-  const repoUrl = "https://github.com/13x54n/sunya.git";
+  const repoUrl = "https://github.com/crytic/not-so-smart-contracts.git";
   let repoName;
   const targetDir = `./temp-audit-storage/${Date.now()}`;
 

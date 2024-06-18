@@ -11,6 +11,16 @@ if [ -z "$repo_url" ]; then
     exit 1
 fi
 
+if [ -z "$repo_name" ]; then
+    echo "Error: Repository name is required."
+    exit 1
+fi
+
+if [ -z "$target_dir" ]; then
+    echo "Error: Target directory is required."
+    exit 1
+fi
+
 # Ensure target directory exists; create it if it doesn't
 mkdir -p "$target_dir"
 
@@ -18,17 +28,19 @@ mkdir -p "$target_dir"
 cd "$target_dir" || exit
 
 # Clone repository
-git clone "$repo_url"
+git clone "$repo_url" "$repo_name"
 
 # Check if cloning was successful
-if [ $? -eq 0 ]; then
-    echo "Repository cloned successfully."
-else
+if [ $? -ne 0 ]; then
     echo "Failed to clone repository. Please check the URL and try again."
+    exit 1
 fi
 
+# Change directory to the cloned repository
+cd "$repo_name" || exit
+
 # Perform slither analysis and redirect output to a file
-slither . > slither_output.txt
+slither . > slither_output.txt 2>&1
 
 # Check if slither analysis was successful
 if [ $? -ne 0 ]; then
