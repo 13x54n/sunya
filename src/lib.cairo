@@ -1,25 +1,24 @@
-fn main() -> u32 {
-    fib(16)
+#[starknet::interface]
+trait ISimpleStorage<TContractState> {
+    fn set(ref self: TContractState, x: u128);
+    fn get(self: @TContractState) -> u128;
 }
 
-fn fib(mut n: u32) -> u32 {
-    let mut a: u32 = 0;
-    let mut b: u32 = 1;
-    while n != 0 {
-        n = n - 1;
-        let temp = b;
-        b = a + b;
-        a = temp;
-    };
-    a
-}
+#[starknet::contract]
+mod SimpleStorage {
+    #[storage]
+    struct Storage {
+        stored_data: u128
+    }
 
-#[cfg(test)]
-mod tests {
-    use super::fib;
+    #[abi(embed_v0)]
+    impl SimpleStorage of super::ISimpleStorage<ContractState> {
+        fn set(ref self: ContractState, x: u128) {
+            self.stored_data.write(x);
+        }
 
-    #[test]
-    fn it_works() {
-        assert(fib(16) == 987, 'it works!');
+        fn get(self: @ContractState) -> u128 {
+            self.stored_data.read()
+        }
     }
 }

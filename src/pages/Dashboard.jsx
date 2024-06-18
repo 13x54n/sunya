@@ -5,13 +5,13 @@ import DeploymentWizard from "./DeploymentWizard";
 import ContractVerification from "./ContractVerification";
 
 export default function Dashboard({ wallet }) {
-    const [activeTab, setActiveTab] = useState('analysis')
+  const [activeTab, setActiveTab] = useState("analysis");
 
-    const handleActiveTab = (_d) => {
-        setActiveTab(_d);
-    }
+  const handleActiveTab = (_d) => {
+    setActiveTab(_d);
+  };
   return (
-    <div className="container mx-auto max-w-7xl p-6 py-4 lg:px-8">  
+    <div className="container mx-auto p-6 py-4 lg:px-8">
       <div className="dashboardContainer__header flex items-center justify-between mb-5">
         <h1 className="font_tiny5 text-5xl my-4">
           🛸 Welcome, {wallet?.selectedAddress.substring(0, 5)}...
@@ -32,22 +32,41 @@ export default function Dashboard({ wallet }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-10">
-        <div className="border-2 border-gray-500 flex-1 h-50 p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl" onClick={() => handleActiveTab("analysis")}>
+      <div className="flex items-center gap-10 mb-3">
+        <div
+          className={`border-2 border-gray-500 flex-1 h-50 p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
+            activeTab === "analysis" && "bg-[#a29bfe] text-white shadow-xl"
+          }`}
+          onClick={() => handleActiveTab("analysis")}
+        >
           <i className="ri-bug-line"></i> Security Analysis
         </div>
-        <div className="border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl" onClick={() => handleActiveTab("deployment")}>
+        <div
+          className={`border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
+            activeTab === "deployment" && "bg-[#dff9fb] shadow-xl"
+          }`}
+          onClick={() => handleActiveTab("deployment")}
+        >
           <i className="ri-cloud-line"></i> Deployment Wizard
         </div>
-        <div className="border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl" onClick={() => handleActiveTab("verification")}>
+        <div
+          className={`border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
+            activeTab === "verification" && "bg-[#b8e994] shadow-xl"
+          }`}
+          onClick={() => handleActiveTab("verification")}
+        >
           <i className="ri-magic-line"></i> Verification
         </div>
       </div>
 
-      <div className="w-full min-h-200 bg-gray-50 my-6 border-2 border-gray-500 rounded-lg p-1 px-2">
-        {activeTab === "analysis" && <SecurityAnalysis/>}
-        {activeTab === "deployment" && <DeploymentWizard/>}
-        {activeTab === "verification" && <ContractVerification/>}
+      <p className="text-md text-gray-500 font-bold">
+        {"Dashboard " + ">" + " Security Analysis"}
+      </p>
+
+      <div>
+        {activeTab === "analysis" && <SecurityAnalysis />}
+        {activeTab === "deployment" && <DeploymentWizard />}
+        {activeTab === "verification" && <ContractVerification />}
       </div>
     </div>
   );
