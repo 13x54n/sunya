@@ -1,21 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  PopoverGroup,
-} from "@headlessui/react";
+import React, { useState } from "react";
+import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Logo from "/logo.png";
 import L2WalletConnectKit from "./L2WalletConnectKit";
 import { useNavigate } from "react-router-dom";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Navbar({ wallet, connectWallet, setWallet }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,7 +11,7 @@ export default function Navbar({ wallet, connectWallet, setWallet }) {
 
   const handleNavigate = (_href) => {
     navigate(_href);
-    setMobileMenuOpen(false)
+    setMobileMenuOpen(false);
   };
 
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import RecentAudits from "../mocks/RecentAudits.json";
 
 export default function Home() {
   return (
@@ -85,69 +84,7 @@ export default function Home() {
         <p><a href="" className="underline" target="_blank">Sunya</a> by Lexy Team.</p>
       </div>
 
-      {/* <div className="overflow-x-auto flex gap-6 my-4">
-        <div className="flex-1">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-md font-semibold">📜 Recent Audits</h2>
-            <button className="text-md font-medium">View all audits →</button>
-          </div>
-
-          <table className="bg-white w-full">
-            <thead className="bg-gray-50 text-sm font-medium">
-              <tr className="text-left">
-                <th className="px-2 py-1">DID</th>
-                <th className="px-2 py-1">Platform</th>
-                <th className="px-2 py-1">Type</th>
-                <th className="px-2 py-1">Age</th>
-              </tr>
-            </thead>
-            <tbody>
-              {RecentAudits.map((audit, index) => (
-                <tr key={index} className="hover:bg-gray-100">
-                  <td className="px-2 py-1 whitespace-nowrap">
-                    {audit.did}{" "}
-                    <i className="ri-file-copy-line cursor-pointer"></i>
-                  </td>
-                  <td className="px-2 py-1">
-                    <span className="bg-green-200 p-1 text-sm rounded-md">
-                      {audit.platform}
-                    </span>
-                  </td>
-                  <td className="px-2 py-1">{audit.project_type}</td>
-                  <td className="px-2 py-1">{audit.age}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="flex-1">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-md font-semibold">📜 Recent Audits</h2>
-            <button>Explore all audits &arrowr;</button>
-          </div>
-
-          <table className="bg-white w-full">
-            <thead className="bg-gray-50">
-              <tr className="text-left">
-                <th className="px-2 py-1">DID</th>
-                <th className="px-2 py-1">Platform</th>
-                <th className="px-2 py-1">Project Type</th>
-                <th className="px-2 py-1">Last Audit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {RecentAudits.map((audit, index) => (
-                <tr key={index} className="hover:bg-gray-100">
-                  <td className="px-2 py-1 whitespace-nowrap">{audit.did}</td>
-                  <td className="px-2 py-1">{audit.platform}</td>
-                  <td className="px-2 py-1">{audit.project_type}</td>
-                  <td className="px-2 py-1">{audit.age}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div> */}
+      
     </div>
   );
 }

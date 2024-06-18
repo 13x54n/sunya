@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Audits from "./pages/Audits";
 import Documentation from "./pages/Documentation";
 import GasTank from "./pages/GasTank";
+import Dashboard from "./pages/Dashboard";
 
 export default function Router() {
   const [wallet, setWallet] = useState(null);
@@ -41,7 +42,9 @@ export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
+      element: wallet?.isConnected ? (
+        <Navigate to="/dashboard" />
+      ) : (
         <>
           <Navbar
             wallet={wallet}
@@ -53,10 +56,29 @@ export default function Router() {
       ),
     },
     {
+      path: "/dashboard",
+      element: wallet?.isConnected ? (
+        <>
+          <Navbar
+            wallet={wallet}
+            connectWallet={connectWallet}
+            setWallet={setWallet}
+          />
+          <Dashboard wallet={wallet} />
+        </>
+      ) : (
+        <Navigate to="/" />
+      ),
+    },
+    {
       path: "/audits",
       element: (
         <>
-          <Navbar />
+          <Navbar
+            wallet={wallet}
+            connectWallet={connectWallet}
+            setWallet={setWallet}
+          />
           <Audits />
         </>
       ),
@@ -65,7 +87,11 @@ export default function Router() {
       path: "/documentation",
       element: (
         <>
-          <Navbar />
+          <Navbar
+            wallet={wallet}
+            connectWallet={connectWallet}
+            setWallet={setWallet}
+          />
           <Documentation />
         </>
       ),
@@ -74,7 +100,11 @@ export default function Router() {
       path: "/gas-tank",
       element: (
         <>
-          <Navbar />
+          <Navbar
+            wallet={wallet}
+            connectWallet={connectWallet}
+            setWallet={setWallet}
+          />
           <GasTank />
         </>
       ),
