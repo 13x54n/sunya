@@ -1,0 +1,1 @@
+@REM Writing script to install Sunya in Windows.
