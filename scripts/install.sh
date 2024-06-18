@@ -23,3 +23,7 @@ rustc --version
 cargo --version  # Optionally, display Cargo version too
 
 cargo install --git https://github.com/crytic/caracal --profile release --force
+
+python3 -m venv venv
+source ./venv/bin/activate
+python3 -m pip install slither-analyzer
