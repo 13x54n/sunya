@@ -5,25 +5,23 @@ struct Vulnerability {
     confidence: String,
 }
 
-# Function to detect use-after-pop-front vulnerability
-func detect_use_after_pop_front() -> Vulnerability:
+# Function to detect controlled-library-call vulnerability
+func detect_controlled_library_call() -> Vulnerability:
     var vulnerabilities: Vulnerability
 
-    let array: array = [1, 2, 3]
-    array.pop_front()
-    let element = array[0]  # Detect use after pop front
-    if element:
-        vulnerabilities = Vulnerability(
-            name = "use-after-pop-front",
-            impact = "Low",
-            confidence = "Medium"
-        )
+    let user_controlled_hash = 123456789  # Simulate user-controlled class hash
+    library_call(user_controlled_hash)  # Detect library call with user controlled hash
+    vulnerabilities = Vulnerability(
+        name = "controlled-library-call",
+        impact = "High",
+        confidence = "Medium"
+    )
 
     return vulnerabilities
 
 # Entry point function to execute vulnerability detection
 func main():
-    let detected_vulnerability = detect_use_after_pop_front()
+    let detected_vulnerability = detect_controlled_library_call()
 
     # Output detected vulnerability
     log("Detected vulnerability:")

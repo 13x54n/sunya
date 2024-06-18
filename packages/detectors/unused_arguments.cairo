@@ -5,25 +5,24 @@ struct Vulnerability {
     confidence: String,
 }
 
-# Function to detect use-after-pop-front vulnerability
-func detect_use_after_pop_front() -> Vulnerability:
+# Function to detect unused-arguments vulnerability
+func detect_unused_arguments() -> Vulnerability:
     var vulnerabilities: Vulnerability
 
-    let array: array = [1, 2, 3]
-    array.pop_front()
-    let element = array[0]  # Detect use after pop front
-    if element:
-        vulnerabilities = Vulnerability(
-            name = "use-after-pop-front",
-            impact = "Low",
-            confidence = "Medium"
-        )
+    func unused_arguments_function(unused_arg: uint256):
+        pass  # Simulate function with unused argument
+    # Function defined with unused argument, detect unused argument
+    vulnerabilities = Vulnerability(
+        name = "unused-arguments",
+        impact = "Low",
+        confidence = "Medium"
+    )
 
     return vulnerabilities
 
 # Entry point function to execute vulnerability detection
 func main():
-    let detected_vulnerability = detect_use_after_pop_front()
+    let detected_vulnerability = detect_unused_arguments()
 
     # Output detected vulnerability
     log("Detected vulnerability:")

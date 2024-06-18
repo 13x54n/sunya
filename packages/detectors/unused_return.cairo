@@ -5,25 +5,24 @@ struct Vulnerability {
     confidence: String,
 }
 
-# Function to detect use-after-pop-front vulnerability
-func detect_use_after_pop_front() -> Vulnerability:
+# Function to detect unused-return vulnerability
+func detect_unused_return() -> Vulnerability:
     var vulnerabilities: Vulnerability
 
-    let array: array = [1, 2, 3]
-    array.pop_front()
-    let element = array[0]  # Detect use after pop front
-    if element:
-        vulnerabilities = Vulnerability(
-            name = "use-after-pop-front",
-            impact = "Low",
-            confidence = "Medium"
-        )
+    func unused_return_function() -> uint256:
+        return 0  # Simulate unused return value
+    # Function returns a value but the return value is not used, detect unused return
+    vulnerabilities = Vulnerability(
+        name = "unused-return",
+        impact = "Medium",
+        confidence = "Medium"
+    )
 
     return vulnerabilities
 
 # Entry point function to execute vulnerability detection
 func main():
-    let detected_vulnerability = detect_use_after_pop_front()
+    let detected_vulnerability = detect_unused_return()
 
     # Output detected vulnerability
     log("Detected vulnerability:")
