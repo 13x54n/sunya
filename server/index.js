@@ -13,16 +13,16 @@ app.use(express.json());
 // CORS configuration
 const corsOptions = {
   origin: "http://localhost:5173",
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
 // Morgan middleware to log HTTP requests
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // Create a route to generate logs
 app.post("/api/analyze", (req, res) => {
-  const bashScriptPath = "./scripts/Detector.sh";
+  const bashScriptPath = "./scripts/detector.sh";
 
   const { repoUrl, projectOwner } = req.body;
   let repoName;
@@ -54,6 +54,17 @@ app.post("/api/analyze", (req, res) => {
       }
 
       res.send(response);
+
+      exec(
+        `rm -rf ${targetDir}`,
+        (cleanupError, cleanupStdout, cleanupStderr) => {
+          if (cleanupError) {
+            console.error(`Error cleaning up: ${cleanupError}`);
+          }
+          console.log(`Cleanup stdout: ${cleanupStdout}`);
+          console.error(`Cleanup stderr: ${cleanupStderr}`);
+        }
+      );
     }
   );
 });

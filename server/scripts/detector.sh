@@ -45,5 +45,3 @@ bun install || yarn install || npm install
 # slither . > slither_output.log 2>&1
 slither . 
 
-# Print the path to the output fi
-echo "$(pwd)/slither_output.txt"
