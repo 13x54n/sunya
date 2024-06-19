@@ -39,14 +39,11 @@ fi
 # Change directory to the cloned repository
 cd "$repo_name" || exit
 
+bun install || yarn install || npm install
+
 # Perform slither analysis and redirect output to a file
-slither . > slither_output.txt 2>&1
+# slither . > slither_output.log 2>&1
+slither . 
 
-# Check if slither analysis was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to analyze code with slither."
-    exit 1
-fi
-
-# Print the path to the output file
+# Print the path to the output fi
 echo "$(pwd)/slither_output.txt"

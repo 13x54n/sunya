@@ -2,42 +2,60 @@ const cluster = require("cluster");
 const os = require("os");
 const express = require("express");
 const { exec } = require("child_process");
+const cors = require("cors");
+const morgan = require("morgan"); // Import morgan middleware
 
 const app = express();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// CORS configuration
+const corsOptions = {
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+// Morgan middleware to log HTTP requests
+app.use(morgan('dev'));
+
 // Create a route to generate logs
-app.get("/api/analyze", (req, res) => {
+app.post("/api/analyze", (req, res) => {
   const bashScriptPath = "./scripts/Detector.sh";
 
-  const repoUrl = "https://github.com/crytic/not-so-smart-contracts.git";
+  const { repoUrl, projectOwner } = req.body;
   let repoName;
   const targetDir = `./temp-audit-storage/${Date.now()}`;
 
   const regex = /\/([^\/]+)\.git$/;
   const match = repoUrl.match(regex);
 
-  if (match) {
-    repoName = match[1];
-  } else {
+  if (!match) {
     res.status(400).send("Invalid repository URL");
     return;
   }
 
-  exec(`bash ${bashScriptPath} "${repoUrl}" "${repoName}" "${targetDir}"`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing script: ${error}`);
-      res.status(500).send(`Error executing script: ${error}`);
-      return;
-    }
+  repoName = match[1];
 
-    // Combine stdout and stderr into a single response
-    let response = `Script output:\n${stdout}`;
-    if (stderr) {
-      response += `\nScript errors:\n${stderr}`;
-    }
+  exec(
+    `bash ${bashScriptPath} "${repoUrl}" "${repoName}" "${targetDir}"`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing script: ${error}`);
+        res.status(500).send(`Error executing script: ${error}`);
+        return;
+      }
 
-    res.send(response);
-  });
+      // Combine stdout and stderr into a single response
+      let response = `Script output:\n${stdout}`;
+      if (stderr) {
+        response += `\nScript output:\n${stderr}`;
+      }
+
+      res.send(response);
+    }
+  );
 });
 
 // Cluster mode: Master process forks workers for each CPU core
