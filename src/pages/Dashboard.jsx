@@ -35,7 +35,7 @@ export default function Dashboard({ wallet }) {
       <div className="flex items-center gap-10 mb-3">
         <div
           className={`border-2 border-gray-500 flex-1 h-50 p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
-            activeTab === "analysis" && "bg-[#a29bfe] text-white shadow-xl"
+            activeTab === "analysis" ? "bg-[#a29bfe] shadow-xl" : ""
           }`}
           onClick={() => handleActiveTab("analysis")}
         >
@@ -43,7 +43,7 @@ export default function Dashboard({ wallet }) {
         </div>
         <div
           className={`border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
-            activeTab === "deployment" && "bg-[#dff9fb] shadow-xl"
+            activeTab === "deployment" ? "bg-[#dff9fb] shadow-xl" : ""
           }`}
           onClick={() => handleActiveTab("deployment")}
         >
@@ -51,7 +51,7 @@ export default function Dashboard({ wallet }) {
         </div>
         <div
           className={`border-2 border-gray-500 flex-1 h-50  p-1 px-2 rounded-lg bg-gray-50  ease-in-out transition-all shadow-sm cursor-pointer hover:shadow-lg font_bebas text-2xl ${
-            activeTab === "verification" && "bg-[#b8e994] shadow-xl"
+            activeTab === "verification" ? "bg-[#b8e994] shadow-xl" : ""
           }`}
           onClick={() => handleActiveTab("verification")}
         >
