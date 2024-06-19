@@ -1,0 +1,1 @@
+This directory contains the custom detector performing static analysis for cairo smart contracts.
