@@ -1,9 +1,9 @@
-const cluster = require("cluster");
-const os = require("os");
-const express = require("express");
-const { exec } = require("child_process");
-const cors = require("cors");
-const morgan = require("morgan"); // Import morgan middleware
+const cluster = require('cluster');
+const os = require('os');
+const express = require('express');
+const { exec } = require('child_process');
+const cors = require('cors');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -12,27 +12,30 @@ app.use(express.json());
 
 // CORS configuration
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: 'http://localhost:5173',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
 // Morgan middleware to log HTTP requests
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // Create a route to generate logs
-app.post("/api/analyze", (req, res) => {
-  const bashScriptPath = "./scripts/detector.sh";
+app.post('/api/analyze', (req, res) => {
+  const bashScriptPath = './scripts/detector.sh';
 
   const { repoUrl, projectOwner } = req.body;
   let repoName;
   const targetDir = `./temp-audit-storage/${Date.now()}`;
 
+  console.log(`Received request to analyze repo: ${repoUrl}`);
+
   const regex = /\/([^\/]+)\.git$/;
   const match = repoUrl.match(regex);
 
   if (!match) {
-    res.status(400).send("Invalid repository URL");
+    console.error('Invalid repository URL:', repoUrl);
+    res.status(400).send('Invalid repository URL');
     return;
   }
 
@@ -58,10 +61,14 @@ app.post("/api/analyze", (req, res) => {
         return;
       }
 
+      console.log(`Script executed successfully`);
+      console.log(`Script stdout: ${stdout}`);
+      console.error(`Script stderr: ${stderr}`);
+
       // Combine stdout and stderr into a single response
       let response = `Script output:\n${stdout}`;
       if (stderr) {
-        response += `\nScript output:\n${stderr}`;
+        response += `\nScript errors:\n${stderr}`;
       }
 
       res.send(response);
@@ -91,7 +98,7 @@ if (cluster.isMaster) {
     cluster.fork();
   }
 
-  cluster.on("exit", (worker, code, signal) => {
+  cluster.on('exit', (worker, code, signal) => {
     console.log(`Worker ${worker.process.pid} died`);
   });
 } else {

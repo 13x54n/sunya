@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Read command-line arguments
 repo_url=$1
 repo_name=$2
