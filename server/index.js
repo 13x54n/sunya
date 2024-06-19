@@ -44,6 +44,17 @@ app.post("/api/analyze", (req, res) => {
       if (error) {
         console.error(`Error executing script: ${error}`);
         res.status(500).send(`Error executing script: ${error}`);
+
+        exec(
+          `rm -rf ${targetDir}`,
+          (cleanupError, cleanupStdout, cleanupStderr) => {
+            if (cleanupError) {
+              console.error(`Error cleaning up: ${cleanupError}`);
+            }
+            console.log(`Cleanup stdout: ${cleanupStdout}`);
+            console.error(`Cleanup stderr: ${cleanupStderr}`);
+          }
+        );
         return;
       }
 
