@@ -38,13 +38,8 @@ fi
 # Change directory to the cloned repository
 cd "$repo_name" || exit
 
+# Install dependencies
 bun install || yarn install || npm install
 
-# Perform slither analysis and redirect output to a file
-# slither . > slither_output.log 2>&1
-
-
-# slither .
-
-python3 /mnt/e/Hackathon/sunya/packages/SNCVulDetector/src/debug_inference.py > debug_output.log 2>&1
-
+# Run the Python script and redirect output to stdout
+python3 /mnt/e/Hackathon/sunya/packages/SNCVulDetector/src/debug_inference.py

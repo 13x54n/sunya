@@ -18,8 +18,8 @@ export default function SecurityAnalysis() {
     setIsLoading(true);
     try {
       const response = await axios.post('http://localhost:3001/api/analyze', {
-        repoUrl: repoUrl + '.git',
-        projectOwner: projectOwner,
+        repoUrl,
+        projectOwner,
       });
       setOutputType('📜 Your planet is found to be bio-friendly!');
       setOutput(response.data);
@@ -94,7 +94,7 @@ export default function SecurityAnalysis() {
             contract.
           </p>
           <p className='text-md font-medium'>
-            Enter <i className='ri-github-fill'></i> Reposity URL:
+            Enter <i className='ri-github-fill'></i> Repository URL:
           </p>
           <input
             type='text'
