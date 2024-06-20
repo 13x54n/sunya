@@ -1,8 +1,10 @@
+import os
 import torch
 from transformers import RobertaForSequenceClassification, RobertaTokenizer
 
 # Correct model directory path
-model_dir = "src/results"
+# model_dir = "E:\\Hackathon\\sunya\\packages\\SNCVulDetector\\src\\src\\results"
+model_dir = "/mnt/e/Hackathon/sunya/packages/SNCVulDetector/src/src/results"
 
 # Load the tokenizer and model
 tokenizer = RobertaTokenizer.from_pretrained(model_dir)
@@ -10,7 +12,8 @@ model = RobertaForSequenceClassification.from_pretrained(model_dir)
 model.eval()  # Set model to evaluation mode
 
 # Load the contract for inference
-contract_path = "D:\\Starkhack\\sunya\\packages\\ExamplesVulnerableContracts\\badContract.cairo"
+# contract_path = "E:\\Hackathon\\sunya\\packages\\ExamplesVulnerableContracts\\badContract.cairo"
+contract_path = "/mnt/e/Hackathon/sunya/packages/ExamplesVulnerableContracts/badContract.cairo"
 with open(contract_path, "r", encoding='utf-8', errors='ignore') as f:
     contract_code = f.read()
 

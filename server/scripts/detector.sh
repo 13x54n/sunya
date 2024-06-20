@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Read command-line arguments
 repo_url=$1
 repo_name=$2
@@ -43,5 +42,9 @@ bun install || yarn install || npm install
 
 # Perform slither analysis and redirect output to a file
 # slither . > slither_output.log 2>&1
-slither . 
+
+
+# slither .
+
+python3 /mnt/e/Hackathon/sunya/packages/SNCVulDetector/src/debug_inference.py > debug_output.log 2>&1
 
