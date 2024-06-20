@@ -35,11 +35,51 @@ export default function SecurityAnalysis() {
 
   const downloadPDF = () => {
     const pdf = new jsPDF();
-    const content = outputRef.current.innerText;
 
-    pdf.setFontSize(10);
+    // Set up static header
+    pdf.setFontSize(18);
+    pdf.setTextColor(0, 123, 255); // Custom color
+    pdf.text('Sunya | Cross Chain Smart Contract Audit & Verification', 20, 20);
+
+    pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0); // Black for subtitle
+    pdf.text('Project Analysis Report', 70, 30);
+
+    // Draw horizontal line with spacing
+    pdf.setLineWidth(0.5);
+    pdf.setDrawColor(0, 123, 255);
+    pdf.line(10, 35, 200, 35);
+
+    // Set font size and type for the main content
+    pdf.setFontSize(12);
+
+    // Add colorful sections
+    pdf.setTextColor(40, 167, 69); // Green color for success message
+    pdf.text('Build Output:', 10, 45);
+    pdf.setTextColor(0, 123, 255); // Blue color for output type
+    pdf.text(outputType, 40, 45);
+
+    pdf.setTextColor(255, 193, 7); // Yellow color for script output label
+    pdf.text('Script output:', 10, 55);
+
+    // Add dynamic content as code block with spacing
+    pdf.setTextColor(0, 0, 0); // Reset to black for main content
+    const content = outputRef.current.innerText;
     const lines = pdf.splitTextToSize(content, 180);
-    pdf.text(10, 10, lines);
+
+    let y = 65; // Initial Y position
+    const pageHeight = pdf.internal.pageSize.height;
+    const margin = 10;
+    const lineHeight = 10;
+
+    lines.forEach((line, index) => {
+      if (y + lineHeight > pageHeight - margin) {
+        pdf.addPage();
+        y = margin; // Reset Y position
+      }
+      pdf.text(line, 10, y);
+      y += lineHeight;
+    });
 
     pdf.save('output.pdf');
   };
