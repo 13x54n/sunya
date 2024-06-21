@@ -1,1 +1,2 @@
 *.safetensors filter=lfs diff=lfs merge=lfs -text
+packages/SNCVulDetector/src/src/results/model.safetensors filter=lfs diff=lfs merge=lfs -text
