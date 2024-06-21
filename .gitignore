@@ -24,5 +24,7 @@ dist-ssr
 *.sw?
 
 target
+server/venv/
+
 
 venvpackages/SNCVulDetector/src/src/results/model.safetensors
