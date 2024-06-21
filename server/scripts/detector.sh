@@ -38,9 +38,35 @@ fi
 # Change directory to the cloned repository
 cd "$repo_name" || exit
 
-bun install || yarn install || npm install
+# Variables to track configurations found
+scarb_found=false
+hardhat_found=false
 
-# Perform slither analysis and redirect output to a file
-# slither . > slither_output.log 2>&1
-slither . 
+# Check if Scarb.toml exists
+if [ -f "Scarb.toml" ]; then
+    echo "Hello from Scarb!"
+    scarb_found=true
+fi
 
+# Check if hardhat.config.js exists
+if [ -f "hardhat.config.js" ]; then
+    echo "Hello from Hardhat!"
+    hardhat_found=true
+fi
+
+# Determine which configurations are found
+if [ "$scarb_found" = true ] && [ "$hardhat_found" = true ]; then
+    echo "Both Scarb and Hardhat configurations detected! Currently you can only audit one at a time!"
+elif [ "$scarb_found" = true ]; then
+    echo "Scarb configuration detected."
+    cd "../../packages/SNCVulDetector/src" || exit
+elif [ "$hardhat_found" = true ]; then
+    echo "Hardhat configuration detected."
+    # Assuming installation command for Hardhat (bun, yarn, or npm)
+    bun install || yarn install || npm install
+
+    # Perform slither analysis and redirect output to a file
+    slither .
+else
+    echo "We currently support projects configured with Scarb, and Hardhat only!"
+fi
