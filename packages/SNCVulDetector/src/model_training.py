@@ -75,8 +75,8 @@ def main():
     train_model(encodings, labels)
 
     # Save the tokenizer to the results directory
-    os.makedirs("src/results", exist_ok=True)
-    tokenizer.save_pretrained("src/results")
+    os.makedirs("./results", exist_ok=True)
+    tokenizer.save_pretrained("./results")
 
 if __name__ == '__main__':
     main()
