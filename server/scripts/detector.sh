@@ -59,7 +59,11 @@ if [ "$scarb_found" = true ] && [ "$hardhat_found" = true ]; then
     echo "Both Scarb and Hardhat configurations detected! Currently you can only audit one at a time!"
 elif [ "$scarb_found" = true ]; then
     echo "Scarb configuration detected."
-    cd "../../packages/SNCVulDetector/src" || exit
+    # pwd could be more dynamic
+    cd "/home/notsolexy/Documents/sunya/server/scripts/packages/SNCVulDetector/src" || exit
+    pip install transformers
+    python3 model_training.py
+    python3 debug_inference.py
 elif [ "$hardhat_found" = true ]; then
     echo "Hardhat configuration detected."
     # Assuming installation command for Hardhat (bun, yarn, or npm)
