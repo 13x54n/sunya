@@ -27,6 +27,7 @@
     "react-notion": "^0.10.0",
     "react-router-dom": "^6.23.1",
     "remixicon": "^4.3.0",
+    "starknet": "^5.24.3",
     "starknetkit": "^1.1.9",
     "tailwind-merge": "^2.3.0",
     "zustand": "^4.5.2"

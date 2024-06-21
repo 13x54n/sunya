@@ -13,3 +13,6 @@ openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", ta
 
 [[target.starknet-contract]]
 sierra = true
+
+[tool.voyager]
+my_contract = { path = "lib.cairo" }
