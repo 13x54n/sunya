@@ -63,12 +63,12 @@ app.post('/api/analyze', (req, res) => {
 
       console.log(`Script executed successfully`);
       console.log(`Script stdout: ${stdout}`);
-      console.error(`Script stderr: ${stderr}`);
+      // console.error(`Script stderr: ${stderr}`);
 
       // Combine stdout and stderr into a single response
       let response = `Script output:\n${stdout}`;
       if (stderr) {
-        response += `\nScript errors:\n${stderr}`;
+        response += `\nBackground Outputs:\n${stderr}`;
       }
 
       res.send(response);
