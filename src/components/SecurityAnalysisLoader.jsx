@@ -9,7 +9,7 @@ const loadingStates = [
     text: "🔭 Identifying L1 || L2 project.",
   },
   {
-    text: "🧰 Building base for Security Analysis.",
+    text: "🧰 Building base and AI Modal for Security Analysis.",
   },
   {
     text: "🍀 Looks biological presence can be found.",
@@ -19,12 +19,15 @@ const loadingStates = [
   },
 ];
 
-export function SecurityAnalysisLoader({fetchData, isLoading}) {
-  const [loading, setLoading] = useState(false);
+export function SecurityAnalysisLoader({ fetchData, isLoading }) {
   return (
     <div>
       {/* Core Loader Modal */}
-      <Loader loadingStates={loadingStates} loading={isLoading} duration={1800} />
+      <Loader
+        loadingStates={loadingStates}
+        loading={isLoading}
+        duration={1800}
+      />
 
       {/* The buttons are for demo only, remove it in your actual code ⬇️ */}
       <button
