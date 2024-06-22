@@ -44,9 +44,10 @@ export default function Audits() {
 
       <div className="flex justify-between my-6 mt-8">
         <div className="text-2xl">📜 Audited Projects</div>
-        <div>
+        <div className="border-2 flex items-center gap-2 px-2">
           <i className="ri-search-line"></i>
           <input
+            className="min-w-[10vw] text-sm"
             type="text"
             placeholder="Search using DID, project name, etc."
           />
@@ -58,26 +59,52 @@ export default function Audits() {
           <table className="bg-white w-full">
             <thead className="bg-gray-50 text-sm font-medium">
               <tr className="text-left">
+                <th className="px-2 py-1">Block Number</th>
                 <th className="px-2 py-1">DID</th>
+                <th className="px-2 py-1">Audit URI</th>
                 <th className="px-2 py-1">Platform</th>
-                <th className="px-2 py-1">Type</th>
-                <th className="px-2 py-1">Age</th>
+                <th className="px-2 py-1">tx Hash</th>
+                <th className="px-2 py-1">Storage Proof</th>
               </tr>
             </thead>
             <tbody>
               {RecentAudits.map((audit, index) => (
                 <tr key={index} className="hover:bg-gray-100">
                   <td className="px-2 py-1 whitespace-nowrap">
+                    {audit.block_number}
+                  </td>
+                  <td className="px-2 py-1 whitespace-nowrap">
                     {audit.did}{" "}
                     <i className="ri-file-copy-line cursor-pointer"></i>
+                  </td>
+                  <td className="px-2 py-1">
+                    <a href={audit.audit_uri} target="_blank">
+                      {audit.cid.substring(0, 10) + "..." + audit.cid.slice(-4)}
+                    </a>
                   </td>
                   <td className="px-2 py-1">
                     <span className="bg-green-200 p-1 text-sm rounded-md">
                       {audit.platform}
                     </span>
                   </td>
-                  <td className="px-2 py-1">{audit.project_type}</td>
-                  <td className="px-2 py-1">{audit.age}</td>
+                  <td className="px-2 py-1">
+                    <a
+                      href={
+                        audit.platform == "starknet"
+                          ? audit.voyager_url
+                          : audit.etherscan_url
+                      }
+                      target="_blank"
+                    >
+                      {audit.txHash.substring(0, 15)}...
+                    </a>
+                  </td>
+                  <td>
+                    <a target="_blank" href={audit.storage_proof}>
+                      {audit.storage_proof.substring(0, 25) +
+                        audit.storage_proof.slice(-5)}
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>

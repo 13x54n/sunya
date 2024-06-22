@@ -1,0 +1,71 @@
+[
+    {
+      "type": "impl",
+      "name": "MapContractImpl",
+      "interface_name": "/opt/app/api/upload/temp/35598a609fd5d4d20ec3899a463a9d6c3c6065476f673f12369c9fdbfb8404a1/audit_registry/src::IMapContract"
+    },
+    {
+      "type": "interface",
+      "name": "/opt/app/api/upload/temp/35598a609fd5d4d20ec3899a463a9d6c3c6065476f673f12369c9fdbfb8404a1/audit_registry/src::IMapContract",
+      "items": [
+        {
+          "type": "function",
+          "name": "set_audit",
+          "inputs": [
+            {
+              "name": "key",
+              "type": "core::felt252"
+            },
+            {
+              "name": "value",
+              "type": "core::felt252"
+            },
+            {
+              "name": "_owner",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "get_audit",
+          "inputs": [
+            {
+              "name": "key",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::felt252"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_audit_owner",
+          "inputs": [
+            {
+              "name": "key",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::felt252"
+            }
+          ],
+          "state_mutability": "view"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "/opt/app/api/upload/temp/35598a609fd5d4d20ec3899a463a9d6c3c6065476f673f12369c9fdbfb8404a1/audit_registry/src::MapContract::Event",
+      "kind": "enum",
+      "variants": []
+    }
+  ]

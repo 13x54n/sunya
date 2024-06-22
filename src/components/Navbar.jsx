@@ -46,12 +46,13 @@ export default function Navbar({ wallet, connectWallet, setWallet }) {
           >
             Audits
           </div>
-          <div
-            onClick={() => handleNavigate("/documentation")}
+          <a
+            href="https://lexy-team.gitbook.io/sunya"
+            target="_blank"
             className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"
           >
             Documentation
-          </div>
+          </a>
           <div
             onClick={() => handleNavigate("/gas-tank")}
             className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer"

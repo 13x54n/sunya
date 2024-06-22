@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MultiStepLoader as Loader } from "./multi-step-loader.jsx";
 
 const loadingStates = [
@@ -29,7 +29,6 @@ export function SecurityAnalysisLoader({ fetchData, isLoading }) {
         duration={1800}
       />
 
-      {/* The buttons are for demo only, remove it in your actual code ⬇️ */}
       <button
         className="bg-gray-700 text-white mt-5 py-2 px-3 rounded-md text-sm font-semibold ease-in-out transition-all cursor-pointer hover:bg-gray-500"
         onClick={() => fetchData()}
