@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Read command-line arguments
 repo_url=$1
 repo_name=$2
@@ -54,14 +55,17 @@ if [ -f "hardhat.config.js" ]; then
     hardhat_found=true
 fi
 
+# Get the current working directory
+root_dir=$(pwd)
+
 # Determine which configurations are found
 if [ "$scarb_found" = true ] && [ "$hardhat_found" = true ]; then
-    echo "Both Scarb and Hardhat configurations detected! Currently you can only audit one at a time!"
+    echo "Both Scarb and Hardhat configurations detected! Currently, you can only audit one at a time!"
 elif [ "$scarb_found" = true ]; then
     echo "Scarb configuration detected."
-    # pwd could be more dynamic
-    cd "/home/notsolexy/Documents/sunya/server/scripts/packages/SNCVulDetector/src" || exit
-    pip install transformers
+    # Navigate to the required directory dynamically
+    cd "$root_dir/server/scripts/packages/SNCVulDetector/src" || exit
+    pip install transformers[torch]
     python3 model_training.py
     python3 debug_inference.py
 elif [ "$hardhat_found" = true ]; then
