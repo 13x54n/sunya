@@ -27,7 +27,7 @@ cargo install --git https://github.com/crytic/caracal --profile release --force
 # Set up Python virtual environment and install Slither
 python3 -m venv venv
 source ./venv/bin/activate
-pip install transformers
+pip install transformers[torch]
 python3 -m pip install slither-analyzer
 
 # Navigate to the project root directory (assuming the script is run from the project root)

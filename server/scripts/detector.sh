@@ -61,7 +61,7 @@ elif [ "$scarb_found" = true ]; then
     echo "Scarb configuration detected."
     # pwd could be more dynamic
     cd "/home/notsolexy/Documents/sunya/server/scripts/packages/SNCVulDetector/src" || exit
-    pip install transformers
+    pip install transformers[torch]
     python3 model_training.py
     python3 debug_inference.py
 elif [ "$hardhat_found" = true ]; then
