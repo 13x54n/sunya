@@ -64,7 +64,7 @@ export default function Dashboard({ wallet }) {
       </p>
 
       <div>
-        {activeTab === "analysis" && <SecurityAnalysis />}
+        {activeTab === "analysis" && <SecurityAnalysis wallet={wallet}/>}
         {activeTab === "deployment" && <DeploymentWizard />}
         {activeTab === "verification" && <ContractVerification />}
       </div>

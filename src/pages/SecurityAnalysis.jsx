@@ -3,8 +3,9 @@ import { Highlight, themes } from "prism-react-renderer";
 import React, { useState, useRef } from "react";
 import { SecurityAnalysisLoader } from "../components/SecurityAnalysisLoader";
 import { jsPDF } from "jspdf";
+import MintAuditDidDIalogueModal from "../components/MintAuditDidDialogueModal";
 
-export default function SecurityAnalysis() {
+export default function SecurityAnalysis({wallet}) {
   const [repoUrl, setRepoUrl] = useState("");
   const [projectOwner, setProjectOwner] = useState("");
   const [outputType, setOutputType] = useState("");
@@ -13,12 +14,13 @@ export default function SecurityAnalysis() {
     `🚀 Astronauts are ready to explore your world!\n🧪 We'll bring back the sample and notify if contagious! 🦠`
   );
   const outputRef = useRef(null);
+  const [isMintDiDModelOpen, setIsMintDiDModelOpen] = useState(false)
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post("http://localhost:3001/api/analyze", {
-        repoUrl: repoUrl + ".git",
+        repoUrl: !repoUrl.endsWith(".git") ? repoUrl + ".git" : repoUrl,
         projectOwner: projectOwner,
       });
       setOutputType("📜 Your planet is found to be bio-friendly!");
@@ -144,15 +146,21 @@ export default function SecurityAnalysis() {
             </Highlight>
           </div>
 
-          {output !==
-            `🚀 Astronauts are ready to explore your world!\n🧪 We'll bring back the sample and notify if contagious! 🦠` && (
+          {/* {output !== */}
+          {/* `🚀 Astronauts are ready to explore your world!\n🧪 We'll bring back the sample and notify if contagious! 🦠` && ( */}
+          <div className="flex gap-2">
             <button
               onClick={downloadPDF}
               className="bg-gray-700 text-white mt-5 py-2 px-3 rounded-md text-sm font-semibold ease-in-out transition-all cursor-pointer hover:bg-gray-500"
             >
               Download as PDF
             </button>
-          )}
+            <button className="bg-gray-700 text-white mt-5 py-2 px-3 rounded-md text-sm font-semibold ease-in-out transition-all cursor-pointer hover:bg-gray-500" onClick={() => setIsMintDiDModelOpen(true)}>
+              Make DID
+            </button>
+            <MintAuditDidDIalogueModal projectOwner={projectOwner} wallet={wallet} isMintDiDModelOpen={isMintDiDModelOpen} setIsMintDiDModelOpen={setIsMintDiDModelOpen} output={output} />
+          </div>
+          {/* )} */}
         </div>
       </div>
     </div>

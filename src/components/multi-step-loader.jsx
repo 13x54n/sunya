@@ -81,7 +81,7 @@ export const MultiStepLoader = ({
   loadingStates,
   loading,
   duration = 2000,
-  loop = true,
+  loop = false,
 }) => {
   const [currentState, setCurrentState] = useState(0);
 
