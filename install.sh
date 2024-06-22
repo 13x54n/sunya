@@ -33,6 +33,39 @@ python3 -m pip install slither-analyzer
 # Navigate to the project root directory (assuming the script is run from the project root)
 cd "$(dirname "$0")"
 
+# Check if Node.js is installed
+if ! command -v node &> /dev/null
+then
+    echo "Node.js is not installed. Installing Node.js..."
+
+    # Install Node.js (you can choose a different method if you prefer)
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+    echo "Node.js has been successfully installed."
+else
+    echo "Node.js is already installed. Skipping installation."
+fi
+
+# Check if bun is installed
+if ! command -v bun &> /dev/null
+then
+    echo "bun is not installed. Installing bun..."
+
+    # Install bun (ensure the script is correct for your system)
+    curl -fsSL https://bun.sh/install | bash
+
+    # Add bun to the PATH
+    source $HOME/.bun/bin/bun
+
+    echo "bun has been successfully installed."
+else
+    echo "bun is already installed. Skipping installation."
+fi
+
+# Clean up old node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
 # Install frontend dependencies using bun
 bun install
 
@@ -41,6 +74,9 @@ bun run dev &
 
 # Navigate to the server directory and run the backend
 cd server
+
+# Clean up old node_modules and package-lock.json in server directory
+rm -rf node_modules package-lock.json
 
 # Install backend dependencies using bun
 bun install
