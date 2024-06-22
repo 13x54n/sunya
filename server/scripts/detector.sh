@@ -38,6 +38,9 @@ fi
 # Change directory to the cloned repository
 cd "$repo_name" || exit
 
+# Get the directory of the current script
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
 # Variables to track configurations found
 scarb_found=false
 hardhat_found=false
@@ -59,8 +62,7 @@ if [ "$scarb_found" = true ] && [ "$hardhat_found" = true ]; then
     echo "Both Scarb and Hardhat configurations detected! Currently you can only audit one at a time!"
 elif [ "$scarb_found" = true ]; then
     echo "Scarb configuration detected."
-    # pwd could be more dynamic
-    cd "/home/notsolexy/Documents/sunya/server/scripts/packages/SNCVulDetector/src" || exit
+    cd "$SCRIPT_DIR/SNCVulDetector/src" || exit
     pip install transformers[torch]
     python3 model_training.py
     python3 debug_inference.py
