@@ -40,6 +40,10 @@ bun run dev &
 
 # Navigate to the server directory and run the backend
 cd server
+
+# Install backend dependencies using bun
+bun install
+
 node index.js
 
 # Wait for both processes to complete (optional)
