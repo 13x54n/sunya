@@ -4,6 +4,7 @@ import SecurityAnalysis from './SecurityAnalysis';
 import DeploymentWizard from './DeploymentWizard';
 import ContractVerification from './ContractVerification';
 import { RpcProvider } from 'starknet';
+import { useNavigate } from 'react-router-dom';
 
 // Initialize the RPC provider
 const provider = new RpcProvider({
@@ -16,6 +17,8 @@ export default function Dashboard({ wallet }) {
   const [transactionStatus, setTransactionStatus] = useState(null);
   const [blockDetails, setBlockDetails] = useState(null);
   const [transactionReceipt, setTransactionReceipt] = useState(null);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const transactionHash =
@@ -68,7 +71,7 @@ export default function Dashboard({ wallet }) {
           {wallet?.selectedAddress.slice(-4)}!
         </h1>
 
-        <div className='w-20 flex flex-col items-center'>
+        <div className='w-20 flex flex-col items-center cursor-pointer' onClick={() => navigate("/gas-tank")}>
           <GaugeChart
             id='gauge-chart5'
             nrOfLevels={420}
@@ -110,7 +113,7 @@ export default function Dashboard({ wallet }) {
       </div>
 
       <p className='text-md text-gray-500 font-bold'>
-        {'Dashboard ' + '>' + ' Security Analysis'}
+        {'Dashboard ' + '> ' +  activeTab}
       </p>
 
       <div>

@@ -1,7 +1,7 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
 import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
-import RecentAudits from '../mocks/RecentAudits.json'
+import RecentAudits from "../mocks/RecentAudits.json";
 
 export default function GasTank() {
   return (
@@ -71,14 +71,15 @@ export default function GasTank() {
             <b>Ethereum Gas Price</b>: n/a <b>Starknet Gas Price</b>: n/a
           </p>
         </div>
-        <div className="flex overflow-hidden flex-1 bg-gray-50 my-6 shadow-lg border-2 border-gray-500 rounded-lg">
+        <div className="flex overflow-hidden flex-1 bg-gray-50 my-6 shadow-lg border-2 border-gray-500 rounded-lg p-4">
           <table className="w-full">
             <thead className="bg-gray-50 text-sm font-medium">
+              <a href="https://app.tokenflow.live/studio/dashboards/6676ed7cc16ba10bb26fdf28" target="_blank">See 7 days transactions (Token Flow)</a>
               <tr className="text-left">
                 <th className="px-2 py-1">Block Number</th>
                 <th className="px-2 py-1">Gas Price</th>
-                <th className="px-2 py-1">tx Hash</th>
-                <th className="px-2 py-1">Storage Proof</th>
+                <th className="px-2 py-1">tx Hash (Voyager)</th>
+                <th className="px-2 py-1">Storage Proof (herodotus)</th>
               </tr>
             </thead>
             <tbody>
@@ -87,9 +88,7 @@ export default function GasTank() {
                   <td className="px-2 py-1 whitespace-nowrap">
                     {audit.block_number}
                   </td>
-                  <td className="px-2 py-1">
-                    0.00003 ETH
-                  </td>
+                  <td className="px-2 py-1">0.00003 ETH</td>
                   <td className="px-2 py-1">
                     <a
                       href={

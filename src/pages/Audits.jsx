@@ -61,10 +61,10 @@ export default function Audits() {
               <tr className="text-left">
                 <th className="px-2 py-1">Block Number</th>
                 <th className="px-2 py-1">DID</th>
-                <th className="px-2 py-1">Audit URI</th>
+                <th className="px-2 py-1">Audit URI (IPFS)</th>
                 <th className="px-2 py-1">Platform</th>
-                <th className="px-2 py-1">tx Hash</th>
-                <th className="px-2 py-1">Storage Proof</th>
+                <th className="px-2 py-1">tx Hash (Voyager & Etherscan)</th>
+                <th className="px-2 py-1">Storage Proof (Herodotus)</th>
               </tr>
             </thead>
             <tbody>
