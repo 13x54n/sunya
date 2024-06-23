@@ -22,14 +22,7 @@ Get your coffee(☕) first time installation might take some minutes.
 
 - `git clone https://github.com/13x54n/sunya.git`
 - `cd sunya`
-- `npm install || yarn install || bun install`: We use Bun.js for our local development but it should work on Node.js environment.
-
-Well, now this can take some moment cause if requirement are not met we try to build and fix it so you don't have to. 🫠
-
-- **Windows**: `cmd ./scripts/install.bat`
-- **Linux & Unix**: `./scripts/install.sh`
-
-- `{package manager} run dev` where `package manager ⊆ [npm, yarn, bun]`
+- `bash ./install.sh` if you're on window go through ./install.sh file it's just bunch of installation commands and must work for Windows too.
 
 🦄 Voila, you should see the demo of our project.
 
