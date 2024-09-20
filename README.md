@@ -27,3 +27,6 @@ Get your coffee(☕) first time installation might take some minutes.
 🦄 Voila, you should see the demo of our project.
 
 ### 🛸 Note: This project is still on rapid development and might make you bleed cause it's edge!
+
+Additional Installation for Linux
+apt install python3.12-venv
